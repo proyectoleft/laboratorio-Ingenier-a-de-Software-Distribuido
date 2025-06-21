@@ -1,5 +1,5 @@
 # laboratorio-Ingenier-a-de-Software-Distribuido
-###1. Objetivos
+1. Objetivos
 ● Comprender los desafíos y conflictos propios de los sistemas distribuidos, tales
 como problemas de sincronización, latencia y consistencia.
 ● Implementar y analizar el modelo de computación cliente-servidor, estableciendo
