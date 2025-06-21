@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Chat en vivo</h1>
+    <p>Hola, {{ name }}! <a href="/logout">Salir</a></p>
+
+    <div id="messages">
+        {% for msg in messages %}
+            <p><strong>{{ msg.name }}:</strong> {{ msg.message }}</p>
+        {% endfor %}
+    </div>
+
+    <form method="post">
+        <input type="text" name="message" required>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        function fetchMessages() {
+            fetch('/get_messages')
+                .then(response => response.json())
+                .then(data => {
+                    const messagesDiv = document.getElementById('messages');
+                    messagesDiv.innerHTML = '';
+                    data.forEach(msg => {
+                        const p = document.createElement('p');
+                        p.innerHTML = '<strong>' + msg.name + ':</strong> ' + msg.message;
+                        messagesDiv.appendChild(p);
+                    });
+                });
+        }
+
+        setInterval(fetchMessages, 2000); // Refresca cada 2 segundos
+        fetchMessages(); // Llamada inicial
+    </script>
+</body>
+</html>
